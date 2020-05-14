@@ -2,6 +2,7 @@ package com.ecart.item.pojos;
 
 public class ItemAttribute
 {
+    private Integer itemAttributeId;
     private Integer itemId;
     private String itemAttribute1;
     private String itemAttribute2;
@@ -12,7 +13,7 @@ public class ItemAttribute
     private String countryOfOrigin;
     private String inventoryType;
 
-    public ItemAttribute(Integer itemId, String itemAttribute1, String itemAttribute2, String itemAttribute3, String itemAttribute4, String itemAttribute5, String itemDescription, String countryOfOrigin, String inventoryType) {
+    public ItemAttribute(Integer itemAttributeId,Integer itemId, String itemAttribute1, String itemAttribute2, String itemAttribute3, String itemAttribute4, String itemAttribute5, String itemDescription, String countryOfOrigin, String inventoryType) {
         this.itemId = itemId;
         this.itemAttribute1 = itemAttribute1;
         this.itemAttribute2 = itemAttribute2;
@@ -22,6 +23,14 @@ public class ItemAttribute
         this.itemDescription = itemDescription;
         this.countryOfOrigin = countryOfOrigin;
         this.inventoryType = inventoryType;
+    }
+
+    public Integer getItemAttributeId() {
+        return itemAttributeId;
+    }
+
+    public void setItemAttributeId(Integer itemAttributeId) {
+        this.itemAttributeId = itemAttributeId;
     }
 
     public Integer getItemId() {
@@ -94,5 +103,21 @@ public class ItemAttribute
 
     public void setInventoryType(String inventoryType) {
         this.inventoryType = inventoryType;
+    }
+
+    @Override
+    public String toString() {
+        return "ItemAttribute{" +
+                "itemAttributeId=" + itemAttributeId +
+                ", itemId=" + itemId +
+                ", itemAttribute1='" + itemAttribute1 + '\'' +
+                ", itemAttribute2='" + itemAttribute2 + '\'' +
+                ", itemAttribute3='" + itemAttribute3 + '\'' +
+                ", itemAttribute4='" + itemAttribute4 + '\'' +
+                ", itemAttribute5='" + itemAttribute5 + '\'' +
+                ", itemDescription='" + itemDescription + '\'' +
+                ", countryOfOrigin='" + countryOfOrigin + '\'' +
+                ", inventoryType='" + inventoryType + '\'' +
+                '}';
     }
 }

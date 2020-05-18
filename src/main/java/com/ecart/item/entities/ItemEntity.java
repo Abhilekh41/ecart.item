@@ -10,8 +10,8 @@ import javax.persistence.*;
 public class ItemEntity
 {
     @Id
-    @GeneratedValue
-    @Column(name="itemId")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name ="itemId")
     private Integer itemId;
 
     @Column(name="item_barcode",length = 50,nullable = false)
@@ -23,16 +23,16 @@ public class ItemEntity
     @Column(name = "pack_quantity")
     private Integer packQuantity;
 
-    @OneToOne(cascade=CascadeType.ALL)
+    @OneToOne(fetch = FetchType.LAZY ,cascade=CascadeType.ALL,mappedBy = "item")
     @JoinColumn(name = "item_attribute",referencedColumnName = "itemId")
-    private ItemAttribute itemAttribute;
+    private ItemAttributeEntity itemAttributeEntity;
 
-    public ItemEntity(Integer itemId, String itemBarcode, String packUOM, Integer packQuantity, ItemAttribute itemAttribute) {
+    public ItemEntity(Integer itemId, String itemBarcode, String packUOM, Integer packQuantity, ItemAttributeEntity itemAttributeEntity) {
         this.itemId = itemId;
         this.itemBarcode = itemBarcode;
         this.packUOM = packUOM;
         this.packQuantity = packQuantity;
-        this.itemAttribute = itemAttribute;
+        this.itemAttributeEntity = itemAttributeEntity;
     }
 
     public Integer getItemId() {
@@ -67,12 +67,12 @@ public class ItemEntity
         this.packQuantity = packQuantity;
     }
 
-    public ItemAttribute getItemAttribute() {
-        return itemAttribute;
+    public ItemAttributeEntity getItemAttributeEntity() {
+        return itemAttributeEntity;
     }
 
-    public void setItemAttribute(ItemAttribute itemAttribute) {
-        this.itemAttribute = itemAttribute;
+    public void setItemAttributeEntity(ItemAttributeEntity itemAttributeEntity) {
+        this.itemAttributeEntity = itemAttributeEntity;
     }
 
     @Override
@@ -82,7 +82,7 @@ public class ItemEntity
                 ", itemBarcode='" + itemBarcode + '\'' +
                 ", packUOM='" + packUOM + '\'' +
                 ", packQuantity=" + packQuantity +
-                ", itemAttribute=" + itemAttribute +
+                ", itemAttributeEntity=" + itemAttributeEntity +
                 '}';
     }
 }

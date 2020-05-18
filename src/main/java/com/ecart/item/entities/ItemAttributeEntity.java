@@ -1,5 +1,7 @@
 package com.ecart.item.entities;
 
+import org.hibernate.annotations.Generated;
+
 import javax.persistence.*;
 
 @Entity
@@ -7,11 +9,8 @@ import javax.persistence.*;
 public class ItemAttributeEntity
 {
     @Id
-    @GeneratedValue
-    @Column(name = "itemAttributedId")
-    private Integer itemAttributeId;
-
-    @Column(name = "itemId")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name ="itemId")
     private Integer itemId;
 
     @Column(name = "itemattribute1")
@@ -38,8 +37,12 @@ public class ItemAttributeEntity
     @Column(name = "inventoryType")
     private String inventoryType;
 
+    @OneToOne(fetch=FetchType.LAZY,optional = false)
+    @JoinColumn(name="itemid",nullable = false)
+    private ItemEntity itemEntity;
+
+
     public ItemAttributeEntity(Integer itemAttributeId, Integer itemId, String itemAttribute1, String itemAttribute2, String itemAttribute3, String itemAttribute4, String itemAttribute5, String itemDescription, String countryOfOrigin, String inventoryType) {
-        this.itemAttributeId = itemAttributeId;
         this.itemId = itemId;
         this.itemAttribute1 = itemAttribute1;
         this.itemAttribute2 = itemAttribute2;
@@ -49,14 +52,6 @@ public class ItemAttributeEntity
         this.itemDescription = itemDescription;
         this.countryOfOrigin = countryOfOrigin;
         this.inventoryType = inventoryType;
-    }
-
-    public Integer getItemAttributeId() {
-        return itemAttributeId;
-    }
-
-    public void setItemAttributeId(Integer itemAttributeId) {
-        this.itemAttributeId = itemAttributeId;
     }
 
     public Integer getItemId() {
@@ -134,7 +129,6 @@ public class ItemAttributeEntity
     @Override
     public String toString() {
         return "ItemAttributeEntity{" +
-                "itemAttributeId=" + itemAttributeId +
                 ", itemId=" + itemId +
                 ", itemAttribute1='" + itemAttribute1 + '\'' +
                 ", itemAttribute2='" + itemAttribute2 + '\'' +
